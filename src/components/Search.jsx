@@ -10,6 +10,11 @@ export class Search extends React.Component {
 		this.setState({ search: e.target.value });
 	};
 
+	resetSearchHandler = () => {
+		this.setState({ search: '' });
+		this.props.searchMovies('', 'all');
+	}
+
 	keyHandler = (e) => {
 		if (e.key === 'Enter') {
 			this.props.searchMovies(this.state.search, this.state.type);
@@ -38,6 +43,8 @@ export class Search extends React.Component {
 						onChange={this.searchHandler}
 						onKeyDown={this.keyHandler}
 					/>
+					{this.state.search &&
+					<div className="reset-search" onClick={this.resetSearchHandler}>X</div> }
 
 					<button
 						className='btn btn-search'
@@ -52,6 +59,7 @@ export class Search extends React.Component {
 					</button>
 					
 				</div>
+
 				<div className='input-field col s12'>
 					<div className='radio-buttons'>
 						<label>
